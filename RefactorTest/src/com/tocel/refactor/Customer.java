@@ -27,24 +27,7 @@ public class Customer {
 			double thisAmount = 0;
 			Rental each = rentals.nextElement();
 			
-			//determine amounts for each line
-			switch (each.get_movie().get_priceCode()) {
-			case Movie.REGULAR:
-				thisAmount += 2;
-				if(each.get_dayRented() > 2)
-					thisAmount += (each.get_dayRented() -2) * 1.5;
-				break;
-			case Movie.NEW_RELEASE:
-				thisAmount += each.get_dayRented() * 3;
-				break;
-			case Movie.CHILDRENS:
-				thisAmount += 1.5;
-				if(each.get_dayRented() > 3)
-					thisAmount += (each.get_dayRented() - 3) * 1.5;
-				break;
-			default:
-				break;
-			}
+			thisAmount = amountFor(each);
 			
 			//add frequent renter points
 			frequentRenterPoints ++;
@@ -63,6 +46,29 @@ public class Customer {
 		
 		return result;
 		
+	}
+
+	private double amountFor(Rental each) {
+		double thisAmount = 0;
+		//determine amounts for each line
+		switch (each.get_movie().get_priceCode()) {
+		case Movie.REGULAR:
+			thisAmount += 2;
+			if(each.get_dayRented() > 2)
+				thisAmount += (each.get_dayRented() -2) * 1.5;
+			break;
+		case Movie.NEW_RELEASE:
+			thisAmount += each.get_dayRented() * 3;
+			break;
+		case Movie.CHILDRENS:
+			thisAmount += 1.5;
+			if(each.get_dayRented() > 3)
+				thisAmount += (each.get_dayRented() - 3) * 1.5;
+			break;
+		default:
+			break;
+		}
+		return thisAmount;
 	}
 	
 }
