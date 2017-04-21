@@ -26,7 +26,7 @@ public class Customer {
 		while(rentals.hasMoreElements()){
 			Rental each = rentals.nextElement();
 			
-			frequentRenterPoints = each.getFrequentRenterPoints();
+			frequentRenterPoints += each.getFrequentRenterPoints();
 			
 			
 			//show figures for this rental
