@@ -40,4 +40,17 @@ public class Rental {
 		}
 		return result;
 	}
+	
+	public int getFrequentRenterPoints() {
+		int frequentRenterPoints = 0;
+		//add frequent renter points
+		frequentRenterPoints ++;
+		//add bonus for a two day new release rental
+		if((get_movie().get_priceCode() == Movie.NEW_RELEASE) && get_dayRented() > 1)
+			frequentRenterPoints ++;
+		return frequentRenterPoints;
+	}
+
+	
+	
 }
