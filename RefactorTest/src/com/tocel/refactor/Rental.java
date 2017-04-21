@@ -18,37 +18,12 @@ public class Rental {
 		return _dayRented;
 	}
 	
-	public double getCharge() {
-		double result = 0;
-		//determine amounts for each line
-		switch (get_movie().get_priceCode()) {
-		case Movie.REGULAR:
-			result += 2;
-			if(get_dayRented() > 2)
-				result += (get_dayRented() -2) * 1.5;
-			break;
-		case Movie.NEW_RELEASE:
-			result += get_dayRented() * 3;
-			break;
-		case Movie.CHILDRENS:
-			result += 1.5;
-			if(get_dayRented() > 3)
-				result += (get_dayRented() - 3) * 1.5;
-			break;
-		default:
-			break;
-		}
-		return result;
+	public double getCharge(){
+		return _movie.getCharge(_dayRented);
 	}
 	
 	public int getFrequentRenterPoints() {
-		int frequentRenterPoints = 0;
-		//add frequent renter points
-		frequentRenterPoints ++;
-		//add bonus for a two day new release rental
-		if((get_movie().get_priceCode() == Movie.NEW_RELEASE) && get_dayRented() > 1)
-			frequentRenterPoints ++;
-		return frequentRenterPoints;
+		return _movie.getFrequentRenterPoints(_dayRented);
 	}
 
 	
